@@ -1,14 +1,25 @@
+import { SigninPage } from './../pages/signin/signin';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import * as firebase from 'firebase';
+
+var config = {
+  apiKey: "AIzaSyBQUh275urrxoilbnHuUjSIRmLIu_u9fUc",
+  authDomain: "chat-firebase-7aecc.firebaseapp.com",
+  databaseURL: "https://chat-firebase-7aecc.firebaseio.com",
+  projectId: "chat-firebase-7aecc",
+  storageBucket: "chat-firebase-7aecc.appspot.com",
+  messagingSenderId: "604693654296"
+};
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage: any = SigninPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -17,6 +28,8 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    firebase.initializeApp(config);
   }
 }
 
